@@ -98,7 +98,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/关于开发的那些事/" style="font-size: 10px;">关于开发的那些事</a> <a href="/tags/关于那些生活/" style="font-size: 10px;">关于那些生活</a>
+						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/关于开发的那些事/" style="font-size: 10px;">关于开发的那些事</a> <a href="/tags/关于那些生活/" style="font-size: 15px;">关于那些生活</a>
 					</div>
 				</section>
 				
@@ -153,6 +153,73 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-关于-iOS-传值" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/26/关于-iOS-传值/" class="article-date">
+  	<time datetime="2015-03-26T11:45:42.000Z" itemprop="datePublished">2015-03-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/26/关于-iOS-传值/">关于 iOS 传值</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="利用通知中心传值(NSNotificationCenter)">利用通知中心传值(NSNotificationCenter)</h3><pre><code><span class="number">1.</span>接受传过来的值
+[[NSNotificationCenter defaultCenter] <span class="string">addObserver:</span>self  <span class="string">selector:</span><span class="annotation">@selector</span>(<span class="string">demo:</span>) <span class="string">name:</span>@<span class="string">"hello"</span> <span class="string">object:</span>@<span class="string">"hello"</span>];     
+- (<span class="typename">void</span>)<span class="string">demo:</span>(NSNotification *)noti
+{
+    NSLog(@<span class="string">"%@"</span>,noti.userInfo[@<span class="string">"hello"</span>]);
+}
+
+<span class="number">2.</span>发送通知并传值(利用字典可以传多个值)
+NSString *str = @<span class="string">"one"</span>;
+NSDictionary *dic = @{@<span class="string">"hello"</span>: str};
+[[NSNotificationCenter defaultCenter]     <span class="string">postNotificationName:</span>@<span class="string">"hello"</span> <span class="string">object:</span>@<span class="string">"hello"</span> <span class="string">userInfo:</span>dic];
+</code></pre><p>问题:<br>当一个界面 push 到另一个界面时,你想在第一个界面传一个值给第二个界面,好,先在第一个界面注册通知并发送,然后在第二个界面再用 addObserver 的方法接受传来的值.一运行,结果不会显示.反而是用这个传值的方式,在第二个界面穿到第一个界面,诶,结果会有显示.<br>我有点不理解,出来的这种状况,可能没把这个通知机制,理解好,感觉是在这个 kvo 上的问题.<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/关于开发的那些事/">关于开发的那些事</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/26/关于-iOS-传值/#more">Read more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-没有捷径-亲身实践" class="article article-type-post" itemscope itemprop="blogPost">
   
