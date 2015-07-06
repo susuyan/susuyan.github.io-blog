@@ -98,7 +98,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/关于开发的那些事/" style="font-size: 10px;">关于开发的那些事</a> <a href="/tags/关于那些生活/" style="font-size: 15px;">关于那些生活</a>
+						<a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/七月瞻望/" style="font-size: 10px;">七月瞻望</a> <a href="/tags/关于开发的那些事/" style="font-size: 13.33px;">关于开发的那些事</a> <a href="/tags/关于那些生活/" style="font-size: 16.67px;">关于那些生活</a>
 					</div>
 				</section>
 				
@@ -153,6 +153,97 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-ios-中的绘图" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/31/ios-中的绘图/" class="article-date">
+  	<time datetime="2015-03-31T12:53:20.000Z" itemprop="datePublished">2015-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/31/ios-中的绘图/">iOS 中的绘图</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="绘图总结">绘图总结</h3><blockquote>
+<p>负责绘制视图的方式是 UIView 的 drawRect: 默认情况下, drawRect: 不会做任何事情. UIView 的子类可以覆盖 drawRect:,完成自定义的绘图任务.<br><code>绘图的方法和函数都是源自 Core Graphics 框架中的 Quartz 2D</code>    </p>
+</blockquote>
+<h3 id="Quartz_2D">Quartz 2D</h3><h4 id="概述:">概述:</h4><p>它是 ios 和 Mac 上的绘图引擎(在 kernel 之外的).在绘制图形的时候,我们只考虑使用它提供的 API(C语言接口)进行图形的各种绘制,而不用考虑图形的最终的渲染显示.</p>
+<h4 id="注意点:(结合官方文档,慢慢阅读和理解)">注意点:(结合官方文档,慢慢阅读和理解)</h4><p><strong>Graphics Contexts</strong> 图形上下文<br><strong>Paths</strong> 路径 (Quartz 2D 是基于路径的绘制)<br><strong>Color and Color Spaces</strong> 通过颜色空间创建颜色<br><strong>Transforms</strong> 仿射变换(平移,旋转,缩放)也就是改变坐标系<br><strong>Patterns</strong> 样式<br><strong>Shadows</strong> 阴影<br><strong>Gradients</strong> 颜色渐变 (线性渐变和径向渐变)<br><strong>Transparency Layers</strong> 透明层<br><strong>Data Management in Quartz 2D</strong><br><strong>Bitmap imagees and image Masks</strong><br><strong>Core Graphics Layer Drawing</strong><br><strong>PDF Document Creation, Viewing, and Transforming</strong><br><strong>PDF Document Parsing</strong><br><strong>PostScript Conversion</strong><br><strong>Text</strong>  绘制文本<br><strong>Glossary</strong></p>
+<h3 id="Example">Example</h3><h4 id="Drawing_a_Line">Drawing a Line</h4><p>画线之前,我们需要获得当前的View 的图形上下文   </p>
+<pre><code><span class="built_in">CGContextRef</span> context = <span class="built_in">UIGraphicsGetCurrentContext</span>();
+</code></pre><p>指定线宽</p>
+<pre><code>CGContextSetLineWidth<span class="list">(<span class="keyword">context</span>, <span class="number">2.0</span>)</span><span class="comment">;</span>
+</code></pre><p>通过颜色空间创建颜色</p>
+<pre><code><span class="built_in">CGColorSpaceRef</span> colorspace = <span class="built_in">CGColorSpaceCreateDeviceRGB</span>(); 
+<span class="built_in">CGFloat</span> components[] = {<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">1.0</span>};
+<span class="built_in">CGColorRef</span> color = <span class="built_in">CGColorCreate</span>(colorspace, components);
+</code></pre><p>设置描边颜色</p>
+<pre><code>CGContextSetStrokeColorWithColor<span class="list">(<span class="keyword">context</span>, color)</span><span class="comment">;</span>
+</code></pre><p>设置开始点</p>
+<pre><code>CGContextMoveToPoint<span class="list">(<span class="keyword">context</span>, <span class="number">30</span>, <span class="number">30</span>)</span><span class="comment">;</span>
+</code></pre><p>设置结束点</p>
+<pre><code>CGContextAddLineToPoint<span class="list">(<span class="keyword">context</span>, <span class="number">300</span>, <span class="number">400</span>)</span><span class="comment">;</span>
+</code></pre><p>开始绘制</p>
+<pre><code>CGContextStrokePath<span class="list">(<span class="keyword">context</span>)</span><span class="comment">;</span>
+CGColorSpaceRelease<span class="list">(<span class="keyword">colorspace</span>)</span><span class="comment">;</span>
+CGColorRelease<span class="list">(<span class="keyword">color</span>)</span><span class="comment">;</span>
+</code></pre><p>简便写法</p>
+<pre><code><span class="comment">
+	- (void)drawRect:(CGRect)rect {
+	    CGContextRef context = UIGraphicsGetCurrentContext();
+	    CGContextSetLineWidth(context, 2.0);
+	    CGContextSetStrokeColorWithColor(context, [UIColor
+	       blueColor].CGColor);
+	    CGContextMoveToPoint(context, 30, 30);
+	    CGContextAddLineToPoint(context, 300, 400);
+	    CGContextStrokePath(context);
+	}
+	</span>
+</code></pre><p><img src="/images/绘图/iOS 模拟器屏幕快照“2015年3月31日 21.23.16”.png" alt="image"></p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/03/31/ios-中的绘图/#more">Read more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-关于-iOS-传值" class="article article-type-post" itemscope itemprop="blogPost">
   
