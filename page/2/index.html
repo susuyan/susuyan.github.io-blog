@@ -154,6 +154,69 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Git常用操作" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/12/Git常用操作/" class="article-date">
+  	<time datetime="2015-04-12T04:45:39.000Z" itemprop="datePublished">2015-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/12/Git常用操作/">Git常用操作</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Git常用操作命令">Git常用操作命令</h3><h4 id="1)_远程仓库相关命令">1) 远程仓库相关命令</h4><p>检出仓库：$ git clone git://github.com/jquery/jquery.git</p>
+<p>查看远程仓库：$ git remote -v</p>
+<p>添加远程仓库：$ git remote add [name] [url]</p>
+<p>删除远程仓库：$ git remote rm [name]</p>
+<p>拉取远程仓库：$ git pull [remoteName] [localBranchName]</p>
+<p>推送远程仓库：$ git push [remoteName] [localBranchName]</p>
+<h4 id="2）分支(branch)操作相关命令">2）分支(branch)操作相关命令</h4><p>查看本地分支：$ git branch</p>
+<p>查看远程分支：$ git branch -r</p>
+<p>创建本地分支：$ git branch [name]<br>——注意新分支创建后不会自动切换为当前分支</p>
+<p>切换分支：$ git checkout [name]</p>
+<p>创建新分支并立即切换到新分支：$ git checkout -b [name]</p>
+<p>删除分支：$ git branch -d [name]<br>—— -d选项只能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。如果想强制删除一个分支，可以使用-D选项</p>
+<p>合并分支：$ git merge [name]<br> ——将名称为[name]的分支与当前分支合并</p>
+<p>创建远程分支(本地分支push到远程)：$ git push origin [name]</p>
+<p>删除远程分支：$ git push origin :heads/[name]</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-iOS-中的音频播放处理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
