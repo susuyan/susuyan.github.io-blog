@@ -154,6 +154,71 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-Cocoapods-的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/26/Cocoapods-的使用/" class="article-date">
+  	<time datetime="2015-07-26T03:12:54.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/26/Cocoapods-的使用/">Cocoapods 的使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="what？">what？</h3><p>Cocoapods出现的一个警告，只要输入与pod有关的命令都会出现下面的警告</p>
+<pre><code><span class="regexp">/Library/</span>Ruby<span class="regexp">/Gems/</span><span class="number">2.0</span>.0<span class="regexp">/gems/</span>cocoapods-<span class="number">0.37</span>.2<span class="regexp">/lib/</span>cocoapods<span class="regexp">/command.rb:127: warning: Insecure world writable dir /</span>usr/local <span class="keyword">in</span> PATH, mode <span class="number">040777</span>
+</code></pre><h3 id="Why？">Why？</h3><p>问题原因：目录被赋予777的权限、不安全，所以只要将提示权限改为775，</p>
+<h3 id="How？">How？</h3><pre><code>sudo <span class="keyword">chmod</span> go-w /usr/<span class="keyword">local</span>/bin
+</code></pre><h3 id="Other…">Other…</h3><p>pod install 和 pod update总是很缓慢。。</p>
+<p>原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少。加参数的命令如下：</p>
+<pre><code>pod install --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
+
+pod <span class="keyword">update</span> --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
+</code></pre><p>或者</p>
+<pre><code>pod install --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
+
+pod <span class="keyword">update</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-你要干嘛" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -621,77 +686,6 @@
       
       
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-iOS-中的音频播放处理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/06/iOS-中的音频播放处理/" class="article-date">
-  	<time datetime="2015-04-06T12:41:43.000Z" itemprop="datePublished">2015-04-06</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/06/iOS-中的音频播放处理/">iOS 中的音频播放处理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="使用_System_sound_service_播放_UI音效和调用振动效果">使用 System sound service 播放 UI音效和调用振动效果</h2><h4 id="概述">概述</h4><p>iOS中最简单的播放声音就是播放系统声音,播放系统声音要用到System Sound Services,它是Audio Toolbox Framework的⼀一部分,它提供C语言风格接⼝用于播放短的声⾳音,如果对应的 设备⽀支持振动,还可以调⽤用振动效果。</p>
-<h4 id="使用_System_sound_service_的限制条件:">使用 System sound service 的限制条件:</h4><ul>
-<li>音频文件播放长度不能大于30秒</li>
-<li>必须是线性的音频格式: PCM / IMA4 (IMA/ADPCM)</li>
-<li>文件格式必须是 .caf .aif .wav<h5 id="如果使用_AudioSerVicePlaySystemSound_函数,还有如下限制:">如果使用 AudioSerVicePlaySystemSound 函数,还有如下限制:</h5><ul>
-<li>音量大小调节,依赖于当前系统音量设置</li>
-<li>声音立即播放</li>
-<li>不支持循环播放,立体声和定位播放</li>
-<li>不支持同时播放,即一次只能播放一个声音</li>
-</ul>
-</li>
-</ul>
-<h5 id="使用_AudioServicePlayAlertSound_函数">使用 AudioServicePlayAlertSound 函数</h5><ul>
-<li>除了播放声音文件外,还会调用振动功能</li>
-</ul>
-<p><em>注意:</em> 系统提供的警告声音和系统提供的用户界面的声音效果并不提供给您的应用程序.例如:使用￼kSystemSoundID_UserPreferredAlert常数作为参数传递给AudioServicesPlayAlertSound￼￼函数将不会有任何效果<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/04/06/iOS-中的音频播放处理/#more">Read more >></a>
-        </p>
       
       <div class="clearfix"></div>
     </div>
