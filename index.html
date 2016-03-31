@@ -177,6 +177,86 @@
 
       <div class="body-wrap">
   
+    <article id="post-iOS-9-新特性（Core-Spotlight）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/31/iOS-9-新特性（Core-Spotlight）/" class="article-date">
+  	<time datetime="2016-03-31T06:09:43.000Z" itemprop="datePublished">2016-03-31</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/31/iOS-9-新特性（Core-Spotlight）/">iOS 9 新特性（Core Spotlight）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Core_Spotlight">Core Spotlight</h1><h2 id="What？">What？</h2><p> Core Spotlight 提供了一些方法来索引应用程序中的内容和管理私有设备上的索引。</p>
+<h2 id="When？">When？</h2><p>使用场景：用来处理用户数据的比如：文档，照片以及其他类型的由用户产生的内容。用户通过索引可以快速的索引到应用本身的内容。</p>
+<h2 id="How？">How？</h2><p><strong>note：</strong> 用户搜索的索引的关键字和内容是需要应用本身提供。下面给出的是基本使用的用法。</p>
+<ul>
+<li>引入CoreSpotlight 框架。 </li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;CoreSpotlight/CoreSpotlight.h&gt;</span></span></span><br><span class="line">   <span class="preprocessor">#import <span class="title">&lt;MobileCoreServices/MobileCoreServices.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建索引属性。</li>
+</ul>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CSSearchableItemAttributeSet *<span class="variable">itemSet =</span> [[CSSearchableItemAttributeSet alloc] initWithItemContentType:(NSString *)kUTTypeText];</span><br><span class="line">    </span><br><span class="line">itemSet.<span class="variable">title =</span> @<span class="string">"防骚扰电话指南"</span>;</span><br><span class="line">itemSet.<span class="variable">thumbnailData =</span> UIImagePNGRepresentation([UIImage imageNamed:@<span class="string">"icon"</span>]);</span><br><span class="line">itemSet.<span class="variable">contentDescription =</span> @<span class="string">"通过将号码数据写入通讯录，达到防骚扰。"</span>;</span><br><span class="line">itemSet.<span class="variable">keywords =</span> @[@<span class="string">"fangsaorao"</span>];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建索引。</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CSSearchableItem *item = [[CSSearchableItem alloc] <span class="string">initWithUniqueIdentifier:</span>@<span class="string">"fangsaorao"</span> <span class="string">domainIdentifier:</span>@<span class="string">"fangsaorao"</span> <span class="string">attributeSet:</span>itemSet];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加索引到设备。 </li>
+</ul>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[CSSearchableIndex defaultSearchableIndex]</span> indexSearchableItems:@<span class="collection">[item]</span> completionHandler:^<span class="list">(<span class="keyword">NSError</span> * _Nullable error)</span> <span class="collection">&#123;</span><br><span class="line">        if <span class="list">(<span class="keyword">error</span>)</span> <span class="collection">&#123;</span><br><span class="line">            NSLog<span class="list">(@<span class="string">"%@"</span>, error.localizedDescription)</span><span class="comment">;</span></span><br><span class="line">        &#125;</span>else <span class="collection">&#123;</span><br><span class="line">            NSLog<span class="list">(@<span class="string">"Core Spotlight success"</span>)</span><span class="comment">;</span></span><br><span class="line">        &#125;</span></span><br><span class="line">    &#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>索引的响应处理</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(nonnull <span class="built_in">UIApplication</span> *)application continueUserActivity:(nonnull <span class="built_in">NSUserActivity</span> *)userActivity restorationHandler:(nonnull <span class="keyword">void</span> (^)(<span class="built_in">NSArray</span> * __nullable))restorationHandler&#123;</span><br><span class="line">    <span class="keyword">if</span> (userActivity<span class="variable">.activityType</span> == CSSearchableItemActionType) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *idetifier = userActivity<span class="variable">.userInfo</span>[<span class="string">@"kCSSearchableItemActivityIdentifier"</span>];</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> ([idetifier isEqualToString:<span class="string">@"fangsaorao"</span>]) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"进入防骚扰指南界面"</span>);</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *idetifier = userActivity<span class="variable">.userInfo</span>[<span class="string">@"kCSSearchableItemActivityIdentifier"</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> ([idetifier isEqualToString:<span class="string">@"fangsaorao"</span>]) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"进入防骚扰指南界面"</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://s3.amazonaws.com/f.cl.ly/items/38181j1K122s470v3r1P/CoreSpotlight.png" alt="image"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-勿忘初心" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -655,78 +735,9 @@ pod <span class="keyword">update</span> --<span class="keyword">no</span>-repo-<
 
 
   
-    <article id="post-关于view加载" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/06/19/关于view加载/" class="article-date">
-  	<time datetime="2015-06-19T01:42:50.000Z" itemprop="datePublished">2015-06-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/19/关于view加载/">关于view加载</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="loadView">loadView</h3><blockquote>
-<p>这玩意儿，虽然明白，但还是感觉有点迷糊，所以来总结下。</p>
-</blockquote>
-<ul>
-<li>当view的nib文件为nil时，手动创建界面时调用loadview，当view的nib文件存在时，会在viewDidload中实现。</li>
-<li>当你的程序运行期间内存不足时，view和viewController收到didReceiveMemoryWarning时,系统会检查当前的viewController的view是否还在使用,如果不在,这个view会被release,再次调⽤用loadView来创建一个新的View。</li>
-</ul>
-<h3 id="ViewDidload">ViewDidload</h3><ul>
-<li>不论是从xib中加载视图,还是从loadview生成视图,都会被调用。但是如果改view在栈中下一次显示是不会被调用。</li>
-</ul>
-<h3 id="ViewWillAppear,ViewDidAppear">ViewWillAppear,ViewDidAppear</h3><ul>
-<li>会在view每次即将可⻅和完全显示时都会调⽤。我们会在ViewWillAppear⾥面进行一些view显⽰的准备工作,ViewDidDisappear 和ViewWillDisAppear时会在view每次消失时都会调⽤。当系统收到didReceiveMemoryWarning通知时显⽰示内存不⾜足时,会调⽤用ViewDidUnload来 清理View中的数据和release后置为nil。</li>
-</ul>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
