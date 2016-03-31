@@ -177,6 +177,110 @@
 
       <div class="body-wrap">
   
+    <article id="post-XML-JSON解析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/06/XML-JSON解析/" class="article-date">
+  	<time datetime="2015-06-06T01:52:31.000Z" itemprop="datePublished">2015-06-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/06/XML-JSON解析/">XML&amp;JSON解析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="XML">XML</h1><h2 id="SAX解析">SAX解析</h2><ol>
+<li><p>创建XML解析对象</p>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSURL</span> *fileURL = [[<span class="built_in">NSBundle</span> mainBundle] URLForResource:<span class="string">@"bookstore"</span> withExtension:<span class="string">@"xml"</span>];</span><br><span class="line"><span class="built_in">NSXMLParser</span> *xmlParser = [[<span class="built_in">NSXMLParser</span> alloc] initWithContentsOfURL:fileURL];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li>设置XML解析对象的代理</li>
+<li><p>开始解析</p>
+ <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">BOOL</span> flag = [xmlParser parse];</span><br><span class="line">   <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">       <span class="built_in">NSLog</span>(<span class="string">@"xmlParser parse error."</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>NSXMLParser对象代理方法：</p>
+<ul>
+<li><p>(void)parserDidStartDocument:(NSXMLParser *)parser </p>
+<blockquote>
+<p>当开始解析XML文档的时候，调用这个方法。通常在这个方法里，<code>创建存储模型对象的数组</code></p>
+</blockquote>
+</li>
+<li><p>(void)parser:(NSXMLParser <em>)parser didStartElement:(NSString </em>)elementName namespaceURI:(NSString <em>)namespaceURI qualifiedName:(NSString </em>)qName attributes:(NSDictionary *)attributeDict </p>
+<blockquote>
+<p>当开始解析，遇到元素的开始标签的时候，调用这个方法。通常在这个方法里，<code>创建模型对象或解析标签中的属性保存在模型对象中</code></p>
+</blockquote>
+</li>
+<li><p>(void)parser:(NSXMLParser <em>)parser foundCharacters:(NSString </em>)string</p>
+<blockquote>
+<p>当解析到xml标签的文本内容的时候，调用这个方法, 通常在这里先<code>暂存解析到的文本内容</code></p>
+</blockquote>
+</li>
+<li><p>(void)parser:(NSXMLParser <em>)parser didEndElement:(NSString </em>)elementName namespaceURI:(NSString <em>)namespaceURI qualifiedName:(NSString </em>)qName</p>
+<blockquote>
+<p>当解析xml内容遇到结束标签的时候，调用这个方法。通常在这个方法里，<code>需要将模型对象保存入数组中或把标签对应的文本内容解析出来，保存在模型对象中（KVC）</code></p>
+</blockquote>
+</li>
+<li><p>(void)parserDidEndDocument:(NSXMLParser *)parser</p>
+<blockquote>
+<p>当整个xml文档全部解析结束的时候，该方法会被调用</p>
+</blockquote>
+</li>
+<li><p>(void)parser:(NSXMLParser <em>)parser parseErrorOccurred:(NSError </em>)parseError</p>
+<blockquote>
+<p>当遇到解析错误时，该方法会被调用</p>
+</blockquote>
+</li>
+</ul>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/06/06/XML-JSON解析/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Git常用操作" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
