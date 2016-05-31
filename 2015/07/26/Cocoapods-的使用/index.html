@@ -16,7 +16,7 @@ Why？问题原因：">
 <meta property="og:description" content="what？Cocoapods出现的一个警告，只要输入与pod有关的命令都会出现下面的警告
 /Library/Ruby/Gems/2.0.0/gems/cocoapods-0.37.2/lib/cocoapods/command.rb:127: warning: Insecure world writable dir /usr/local in PATH, mode 040777
 Why？问题原因：">
-<meta property="og:updated_time" content="2015-07-26T03:13:28.000Z">
+<meta property="og:updated_time" content="2016-05-31T01:42:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocoapods 的使用">
 <meta name="twitter:description" content="what？Cocoapods出现的一个警告，只要输入与pod有关的命令都会出现下面的警告
@@ -232,7 +232,37 @@ pod <span class="keyword">update</span> --<span class="keyword">verbose</span> -
 <pre><code>pod install --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
 
 pod <span class="keyword">update</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
-</code></pre>
+</code></pre><h3 id="ADD">ADD</h3><ul>
+<li>更新或安装Cocoapods 会出现如下错误</li>
+</ul>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ERROR:  <span class="keyword">While</span> executing gem <span class="attribute">...</span> 	</span><br><span class="line">(Errno<span class="tag">::EPERM</span>)</span><br><span class="line"></span><br><span class="line">   Operation <span class="literal">not</span> permitted <span class="subst">-</span> /usr/bin/pod</span><br></pre></td></tr></table></figure>
+<p>解决方案： </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gem <span class="operator"><span class="keyword">install</span> -n /usr/<span class="keyword">local</span>/<span class="keyword">bin</span> cocoapods</span></span><br></pre></td></tr></table></figure>
+<p>参考方案：</p>
+<p><a href="http://stackoverflow.com/questions/33015875/operation-not-permitted-usr-bin-update-rubygems" target="_blank" rel="external">http://stackoverflow.com/questions/33015875/operation-not-permitted-usr-bin-update-rubygems</a></p>
+<ul>
+<li>Cocoapods 卸载</li>
+</ul>
+<p>找到Cocoapods 安装路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> pod</span><br></pre></td></tr></table></figure>
+<p>手动移除Cocoapods</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf <span class="tag">&lt;<span class="title">path</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看Cocoapods安装包</li>
+</ul>
+<p>查看gems中本地程序包</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem <span class="type">list</span></span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">*** <span class="tag">LOCAL</span> <span class="tag">GEMS</span> ***</span><br><span class="line"></span><br><span class="line"><span class="tag">activesupport</span> (4<span class="class">.2</span><span class="class">.1</span>)</span><br><span class="line"><span class="tag">bigdecimal</span> (1<span class="class">.2</span><span class="class">.0</span>)</span><br><span class="line"><span class="tag">CFPropertyList</span> (2<span class="class">.2</span><span class="class">.8</span>)</span><br><span class="line"><span class="tag">claide</span> (1<span class="class">.0</span><span class="class">.0</span><span class="class">.beta</span><span class="class">.1</span>, 0<span class="class">.9</span><span class="class">.1</span>, 0<span class="class">.8</span><span class="class">.1</span>)</span><br><span class="line"><span class="tag">clamp</span> (0<span class="class">.6</span><span class="class">.5</span>)</span><br><span class="line"><span class="tag">cocoapods</span> (0<span class="class">.39</span><span class="class">.0</span>, 0<span class="class">.38</span><span class="class">.2</span>, 0<span class="class">.37</span><span class="class">.1</span>)</span><br><span class="line"><span class="tag">cocoapods-core</span> (0<span class="class">.39</span><span class="class">.0</span>, 0<span class="class">.38</span><span class="class">.2</span>, 0<span class="class">.37</span><span class="class">.1</span>)</span><br><span class="line"><span class="tag">cocoapods-downloader</span> (0<span class="class">.9</span><span class="class">.3</span>, 0<span class="class">.9</span><span class="class">.0</span>)</span><br><span class="line"><span class="tag">cocoapods-plugins</span> (0<span class="class">.4</span><span class="class">.2</span>)</span><br><span class="line"><span class="tag">cocoapods-search</span> (0<span class="class">.1</span><span class="class">.0</span>)</span><br><span class="line"><span class="tag">cocoapods-stats</span> (0<span class="class">.6</span><span class="class">.2</span>, 0<span class="class">.5</span><span class="class">.3</span>)</span><br><span class="line"><span class="tag">cocoapods-trunk</span> (0<span class="class">.6</span><span class="class">.4</span>, 0<span class="class">.6</span><span class="class">.0</span>)</span><br><span class="line"><span class="tag">cocoapods-try</span> (0<span class="class">.5</span><span class="class">.1</span>, 0<span class="class">.4</span><span class="class">.5</span>, 0<span class="class">.4</span><span class="class">.4</span>)</span><br><span class="line"><span class="tag">colored</span> (1<span class="class">.2</span>)</span><br><span class="line"><span class="tag">colorize</span> (0<span class="class">.7</span><span class="class">.7</span>)</span><br><span class="line"><span class="tag">escape</span> (0<span class="class">.0</span><span class="class">.4</span>)</span><br><span class="line"><span class="tag">fourflusher</span> (0<span class="class">.3</span><span class="class">.0</span>)</span><br><span class="line"><span class="tag">fuzzy_match</span> (2<span class="class">.0</span><span class="class">.4</span>)</span><br><span class="line"><span class="tag">i18n</span> (0<span class="class">.7</span><span class="class">.0</span>)</span><br><span class="line"><span class="tag">io-console</span> (0<span class="class">.4</span><span class="class">.2</span>)</span><br></pre></td></tr></table></figure>
+<p>移除程序包</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">sudo</span> <span class="tag">gem</span> <span class="tag">upinstall</span> <span class="tag">cocoapods</span> <span class="tag">-v</span> 0<span class="class">.35</span><span class="class">.0</span></span><br><span class="line"><span class="tag">sudo</span> <span class="tag">gem</span> <span class="tag">upinstall</span> <span class="tag">cocoapods-core</span> <span class="tag">-v</span> 0<span class="class">.35</span><span class="class">.0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装指定版本的Cocoapods</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">sudo</span> <span class="tag">gem</span> <span class="tag">install</span> <span class="tag">cocoapods</span> <span class="tag">-v</span> 0<span class="class">.39</span><span class="class">.0</span></span><br></pre></td></tr></table></figure>
+<p>查看安装版本</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="comment">--version</span></span><br></pre></td></tr></table></figure>
+
       
     </div>
     
