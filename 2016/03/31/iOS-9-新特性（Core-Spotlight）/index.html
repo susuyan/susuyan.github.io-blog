@@ -23,7 +23,7 @@ How？note： 用户搜索的索引的关键字和内容是需要应用本身提
 
 引入CoreSpotlight 框架">
 <meta property="og:image" content="https://s3.amazonaws.com/f.cl.ly/items/38181j1K122s470v3r1P/CoreSpotlight.png">
-<meta property="og:updated_time" content="2016-03-31T06:10:21.000Z">
+<meta property="og:updated_time" content="2017-12-24T13:34:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 9 新特性（Core Spotlight）">
 <meta name="twitter:description" content="Core SpotlightWhat？ Core Spotlight 提供了一些方法来索引应用程序中的内容和管理私有设备上的索引。
@@ -59,7 +59,7 @@ How？note： 用户搜索的索引的关键字和内容是需要应用本身提
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://tp1.sinaimg.cn/1621310264/180/5727933009/1" class="js-avatar">
+			<img src="http://7xoccr.com1.z0.glb.clouddn.com/profile_icon.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">苏苏炎</a></h1>
@@ -117,7 +117,7 @@ How？note： 用户搜索的索引的关键字和内容是需要应用本身提
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://tp1.sinaimg.cn/1621310264/180/5727933009/1" class="js-avatar">
+				<img src="http://7xoccr.com1.z0.glb.clouddn.com/profile_icon.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">苏苏炎</h1>
@@ -192,7 +192,7 @@ How？note： 用户搜索的索引的关键字和内容是需要应用本身提
 <ul>
 <li>引入CoreSpotlight 框架。 </li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;CoreSpotlight/CoreSpotlight.h&gt;</span></span></span><br><span class="line">   <span class="preprocessor">#import <span class="title">&lt;MobileCoreServices/MobileCoreServices.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;CoreSpotlight/CoreSpotlight.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;MobileCoreServices/MobileCoreServices.h&gt;</span></span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>创建索引属性。</li>
 </ul>
@@ -208,7 +208,7 @@ How？note： 用户搜索的索引的关键字和内容是需要应用本身提
 <ul>
 <li>索引的响应处理</li>
 </ul>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(nonnull <span class="built_in">UIApplication</span> *)application continueUserActivity:(nonnull <span class="built_in">NSUserActivity</span> *)userActivity restorationHandler:(nonnull <span class="keyword">void</span> (^)(<span class="built_in">NSArray</span> * __nullable))restorationHandler&#123;</span><br><span class="line">    <span class="keyword">if</span> (userActivity<span class="variable">.activityType</span> == CSSearchableItemActionType) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *idetifier = userActivity<span class="variable">.userInfo</span>[<span class="string">@"kCSSearchableItemActivityIdentifier"</span>];</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">if</span> ([idetifier isEqualToString:<span class="string">@"fangsaorao"</span>]) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"进入防骚扰指南界面"</span>);</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *idetifier = userActivity<span class="variable">.userInfo</span>[<span class="string">@"kCSSearchableItemActivityIdentifier"</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> ([idetifier isEqualToString:<span class="string">@"fangsaorao"</span>]) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"进入防骚扰指南界面"</span>);</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(nonnull <span class="built_in">UIApplication</span> *)application continueUserActivity:(nonnull <span class="built_in">NSUserActivity</span> *)userActivity restorationHandler:(nonnull <span class="keyword">void</span> (^)(<span class="built_in">NSArray</span> * __nullable))restorationHandler&#123;</span><br><span class="line">    <span class="keyword">if</span> (userActivity<span class="variable">.activityType</span> == CSSearchableItemActionType) &#123;</span><br><span class="line">        <span class="built_in">NSString</span> *idetifier = userActivity<span class="variable">.userInfo</span>[<span class="string">@"kCSSearchableItemActivityIdentifier"</span>];</span><br><span class="line">    <span class="keyword">if</span> ([idetifier isEqualToString:<span class="string">@"fangsaorao"</span>]) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"进入防骚扰指南界面"</span>);            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *idetifier = userActivity<span class="variable">.userInfo</span>[<span class="string">@"kCSSearchableItemActivityIdentifier"</span>];</span><br><span class="line">    <span class="keyword">if</span> ([idetifier isEqualToString:<span class="string">@"fangsaorao"</span>]) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"进入防骚扰指南界面"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="https://s3.amazonaws.com/f.cl.ly/items/38181j1K122s470v3r1P/CoreSpotlight.png" alt="image"></p>
 
       

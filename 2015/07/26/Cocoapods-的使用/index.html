@@ -18,7 +18,7 @@ Why？问题原因：">
 <meta property="og:description" content="what？Cocoapods出现的一个警告，只要输入与pod有关的命令都会出现下面的警告
 /Library/Ruby/Gems/2.0.0/gems/cocoapods-0.37.2/lib/cocoapods/command.rb:127: warning: Insecure world writable dir /usr/local in PATH, mode 040777
 Why？问题原因：">
-<meta property="og:updated_time" content="2016-05-31T01:42:48.000Z">
+<meta property="og:updated_time" content="2017-12-24T13:31:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cocoapods 的使用">
 <meta name="twitter:description" content="what？Cocoapods出现的一个警告，只要输入与pod有关的命令都会出现下面的警告
@@ -52,7 +52,7 @@ Why？问题原因：">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://tp1.sinaimg.cn/1621310264/180/5727933009/1" class="js-avatar">
+			<img src="http://7xoccr.com1.z0.glb.clouddn.com/profile_icon.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">苏苏炎</a></h1>
@@ -110,7 +110,7 @@ Why？问题原因：">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://tp1.sinaimg.cn/1621310264/180/5727933009/1" class="js-avatar">
+				<img src="http://7xoccr.com1.z0.glb.clouddn.com/profile_icon.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">苏苏炎</h1>
@@ -183,14 +183,11 @@ Why？问题原因：">
 <pre><code><span class="regexp">/Library/</span>Ruby<span class="regexp">/Gems/</span><span class="number">2.0</span>.0<span class="regexp">/gems/</span>cocoapods-<span class="number">0.37</span>.2<span class="regexp">/lib/</span>cocoapods<span class="regexp">/command.rb:127: warning: Insecure world writable dir /</span>usr/local <span class="keyword">in</span> PATH, mode <span class="number">040777</span>
 </code></pre><h3 id="Why？">Why？</h3><p>问题原因：目录被赋予777的权限、不安全，所以只要将提示权限改为775，</p>
 <h3 id="How？">How？</h3><pre><code>sudo <span class="keyword">chmod</span> go-w /usr/<span class="keyword">local</span>/bin
-</code></pre><h3 id="Other…">Other…</h3><p>pod install 和 pod update总是很缓慢。。</p>
-<p>原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少。加参数的命令如下：</p>
+</code></pre><h3 id="Other…">Other…</h3><p><strong><em>pod install</em></strong> 和 <strong><em>pod update</em></strong>总是很缓慢。。<br>原因在于当执行以上两个命令的时候会升级CocoaPods的spec仓库，加一个参数可以省略这一步，然后速度就会提升不少。加参数的命令如下：</p>
 <pre><code>pod install --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
-
 pod <span class="keyword">update</span> --<span class="keyword">verbose</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
 </code></pre><p>或者</p>
 <pre><code>pod install --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
-
 pod <span class="keyword">update</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span>
 </code></pre><h3 id="ADD">ADD</h3><ul>
 <li>更新或安装Cocoapods 会出现如下错误</li>
